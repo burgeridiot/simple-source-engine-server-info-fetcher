@@ -1,26 +1,30 @@
 import a2s
 import tkinter as tk
-
 window = tk.Tk(className="source engine Server Info")
+window.configure(bg="#4c5844")
 window.geometry("200x150")
 window.resizable(width=False, height=False)
-space = tk.Label(text="   IP Address   ")
-space3 = tk.Label(text="   Port   ")
-space4 = tk.Label(text="")
+p1 = tk.PhotoImage(file = 'info.png')
+window.iconphoto(False, p1)
+space = tk.Label(text="   IP Address   ", bg="#4c5844", fg="#eff6ee")
+space3 = tk.Label(text="   Port   ", bg="#4c5844", fg="#eff6ee")
+space4 = tk.Label(text="", bg="#4c5844", fg="#eff6ee")
 resultname = tk.Label()
 resultplayer = tk.Label()
 resultping = tk.Label()
-ip = tk.Entry(width=20)
-port = tk.Entry(width=10)
-confirm = tk.Button(text="Confirm")
+ip = tk.Entry(width=20, bg="#3f4738", fg="#eff6ee")
+port = tk.Entry(width=10, bg="#3f4738", fg="#eff6ee")
+confirm = tk.Button(text="Confirm", bg="#3f4738", fg="#eff6ee")
+
+
 def handleclick(stuff):
-    global result
-    addres = ip.get()
+    window.geometry("200x150")
+    adders = ip.get()
     por = int(port.get())
-    address = (addres, por)
-    resultname.configure(text=f"This server is called {a2s.info(address).server_name}.")
-    resultplayer.configure(text=f"It has {a2s.info(address).player_count} players, out of a maximum of {a2s.info(address).max_players}.")
-    resultping.configure(text=f"This server's ping is {a2s.info(address).ping}ms.")
+    address = (adders, por)
+    resultname.configure(text=f"This server is called {a2s.info(address).server_name}.", bg="#4c5844", fg="#eff6ee")
+    resultplayer.configure(text=f"It has {a2s.info(address).player_count} players, out of a maximum of {a2s.info(address).max_players}.", bg="#4c5844", fg="#eff6ee")
+    resultping.configure(text=f"This server's ping is {a2s.info(address).ping}ms.", bg="#4c5844", fg="#eff6ee")
     resultname.pack()
     window.update()
     print(resultname.winfo_width())
@@ -29,6 +33,8 @@ def handleclick(stuff):
     window.geometry(f"{geomet}x200")
     resultplayer.pack()
     resultping.pack()
+
+
 space.pack()
 ip.pack()
 space3.pack()
@@ -37,3 +43,4 @@ space4.pack()
 confirm.pack()
 confirm.bind("<Button-1>", handleclick)
 window.mainloop()
+
